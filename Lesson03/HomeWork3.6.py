@@ -7,8 +7,8 @@
 """
 
 
-def int_func(word: str):
-    return word.capitalize()
+def int_func(one_word: str):
+    return one_word.capitalize()
 
 
 def is_empty(string):
