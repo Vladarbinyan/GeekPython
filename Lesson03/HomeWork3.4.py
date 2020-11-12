@@ -5,3 +5,32 @@
 способами. Первый — возведение в степень с помощью оператора **. Второй — более сложная реализация без оператора **,
 предусматривающая использование цикла.
 """
+
+
+def my_func(x, y):
+    """
+    Первый вариант - используем встроенную функцию **
+    Второй вариант - реализация с помощью цикла
+    :param x: float
+    :param y: int
+    :return: tuple(float(result1), float(result2))
+    """
+    # Первый вариант
+    result1 = x ** y
+
+    # Второй вариант - цикл
+    if y == 0:
+        result2 = 1
+    else:
+        tmp = x
+        for i in range(abs(y) - 1):
+            x = x * tmp
+        if y < 0:
+            result2 = 1 / x
+        else:
+            result2 = x
+
+    return result1, result2
+
+
+print(my_func(3, -5))
