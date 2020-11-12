@@ -33,4 +33,4 @@ def my_func(x, y):
     return result1, result2
 
 
-print(my_func(3, -5))
+print(my_func(3, -2))
