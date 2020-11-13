@@ -34,3 +34,4 @@ def my_func(x, y):
 
 
 print(my_func(3, -2))
+print(my_func(3, -1))
