@@ -15,3 +15,6 @@ def multiplication(prev, current):
 numbers = [el for el in range(100, 1001) if el % 2 == 0]
 print(numbers)
 print(reduce(multiplication, numbers))
+
+# Вариант с разбора ДЗ
+print(reduce(lambda x, y: x * y, numbers, 1))
