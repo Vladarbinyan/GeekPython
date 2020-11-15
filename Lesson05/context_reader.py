@@ -1,4 +1,4 @@
-with open(r"D:\DevOps\Python\GeekPython\Lesson05\data.txt", "r+") as my_file:
+with open(r"D:\DevOps\Python\GeekPython\Lesson05\data.txt", "w+") as my_file:
     print('Print to x', file=my_file)
     print(my_file.read())
 
