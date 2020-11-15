@@ -24,6 +24,36 @@ def is_empty(string):
         return True
 
 
+def file_read(filename):
+    """
+    :param filename:
+    :return: str or None
+    """
+
+    try:
+        with open(filename, "r", encoding='utf-8') as input_file:
+            strings = input_file.read()
+            return strings
+    except IOError:
+        print('some filesystem error')
+        return
+
+
+def file_write(filename, strings):
+    """
+    :param filename:
+    :param strings:
+    :return: True or False
+    """
+    try:
+        with open(filename, "w", encoding='utf-8') as out_file:
+            print(strings, file=out_file)
+            return True
+    except IOError:
+        print('some filesystem error')
+        return False
+
+
 print(
     'Первая часть. Выполняет чтение файла, определяет сотрудников с окладом менее 20 тыс, '
     'вычисляет средний доход по всем сотрудникам')
@@ -37,22 +67,22 @@ while True:
         print('Файл не существует, введите другое имя файла')
         continue
     else:
-        try:
-            with open(filename, "r", encoding='utf-8') as input_file:
-                salaries = {}  # строки которые читаем из файла будем складывать в словарь, где ключ это сотрудник а
-                # ЗП значение. Предполагаем что формат файла соответстует, поэтому проверки опускаем.
-                for line in input_file.readlines():
-                    person, amount = line.replace('\n', '').split(' ')
+        salaries = {}  # строки которые читаем из файла будем складывать в словарь, где ключ это сотрудник а
+        # ЗП значение. Предполагаем что формат файла соответстует, поэтому проверки опускаем.
+        in_string = file_read(filename)
+        if in_string is not None:
+            for line in in_string.split('\n'):
+                if not is_empty(line):
+                    person, amount = line.split(' ')
                     salaries.update({person: float(amount)})
-        except IOError:
-            print('some filesystem error')
+            # print(salaries)
+            for person in salaries.keys():
+                if salaries.get(person) < 20000:
+                    print(f'У сотрудника {person} оклад меньше 20000 рублей')
+            print(f'Средняя величина дохода составила {round(sum(salaries.values()) / len(salaries), 2)} рублей')
+            break
+        else:
             continue
-        print(salaries)
-        for person in salaries.keys():
-            if salaries.get(person) < 20000:
-                print(f'У сотрудника {person} оклад меньше 20000 рублей')
-        print(f'Средняя величина дохода составила {round(sum(salaries.values()) / len(salaries), 2)} рублей')
-        break
 
 print('Вторая часть. Считывание числительных из файла, перевод и запись в новый файл')
 
@@ -69,20 +99,9 @@ while True:
         print('Файл не существует, введите другое имя файла')
         continue
     else:
-        try:
-            with open(filename, "r", encoding='utf-8') as input_file:
-                in_string = input_file.read()
-                for eng, ru in my_dict.items():
-                    in_string = in_string.replace(eng, ru)
-        except IOError:
-            print('some filesystem error')
-            continue
-        try:
-            with open('en_'+filename, "w", encoding='utf-8') as output_file:
-                output_file.write(in_string)
-        except IOError:
-            print('some filesystem error')
-        print(f'Результат записан в файл: en_{filename}')
+        in_string = file_read(filename)
+        for eng, ru in my_dict.items():
+            in_string = in_string.replace(eng, ru)
+        if file_write('en_' + filename, in_string):
+            print(f'Результат записан в файл: en_{filename}')
         break
-
-
