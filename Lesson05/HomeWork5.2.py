@@ -4,6 +4,7 @@
 """
 from os import path
 
+
 def is_empty(string):
     if string.isspace() or not bool(string):
         return True
@@ -14,10 +15,10 @@ while True:
     filename = input(
         'Введите имя файла в текущей директории, для выхода без чтения оставьте поле пустым >>> ')
     if is_empty(filename):
-        print('Запись отменена')
+        print('Чтение отменено, выход')
         break
     elif not path.exists(filename):
-        print('Файл не существует, введите другое имя существующего файла')
+        print('Файл не существует, введите другое имя файла')
         continue
     else:
         try:
@@ -26,10 +27,10 @@ while True:
                 for line in my_file.readlines():
                     file_data_lines.append(line)
         except IOError:
-            print('Some error')
+            print('some filesystem error')
+            continue
+# Выполняем подсчет и прерываем бесконечный цикл
+        print(f'Файл содержит {len(file_data_lines)} строк')
+        for i, el in enumerate(file_data_lines):
+            print(f'Строка {i + 1} состоит из {len(el.split())} слов')
         break
-
-print(f'Файл содержит {len(file_data_lines)} строк')
-for i, el in enumerate(file_data_lines):
-    print(f'Строка {i+1} состоит из {len(el.split())} слов')
-

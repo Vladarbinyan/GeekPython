@@ -14,7 +14,7 @@ def file_write(filename, strings):
         with open(filename, "w", encoding='utf-8') as my_file:
             print(strings, file=my_file)
     except IOError:
-        print('any filesystem error')
+        print('some filesystem error')
 
 
 """
