@@ -29,7 +29,8 @@ strings = "\n".join(iter(input, ""))
 
 if not is_empty(strings):
     while True:
-        filename = input('Введите имя файла, для выхода без записи оставьте поле пустым >>> ')
+        filename = input(
+            'Введите имя файла (запись файла в текущюю директорию), для выхода без записи оставьте поле пустым >>> ')
         if is_empty(filename):
             print('Запись отменена')
             break
