@@ -29,7 +29,6 @@ def file_read(filename):
     :param filename:
     :return: str or None
     """
-
     try:
         with open(filename, "r", encoding='utf-8') as input_file:
             strings = input_file.read()

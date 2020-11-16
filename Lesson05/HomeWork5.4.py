@@ -60,4 +60,4 @@ while True:
 numbers = file_read(filename).split()
 if numbers is not None:
     numbers = [int(i) for i in numbers]
-    print(reduce(lambda x, y: x + y, numbers, 1))
+    print(reduce(lambda x, y: x + y, numbers, 0))
