@@ -50,7 +50,7 @@ class NotEnoughMoneyException(Exception):
         self.needle = needle
 
     def __str__(self):
-        return f'Не хватает денег на покупку машины. Нужно {self.needle} места, а имеется {self.current}'
+        return f'Не хватает денег на покупку машины. Нужно {self.needle}, а имеется {self.current}'
 
 
 class Customer:
@@ -66,7 +66,7 @@ class Customer:
 
 
 factory = CarFactory()
-stock = CarStock(50)
+stock = CarStock(6)
 john = Customer(500)
 
 car_list = factory.build(4)
@@ -75,4 +75,4 @@ try:
     john.buy(stock.cars[1])
 except NotEnoughMoneyException as exception:
     print(f'У вас не хватает {exception.needle - exception.current}')
-
+    print(exception)
