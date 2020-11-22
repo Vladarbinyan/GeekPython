@@ -46,7 +46,7 @@ numbers = MyNumbersList()
 
 while True:
     user_input = input(
-        f'Введите любое число, для прекращения ввода введите "stop", печать списка "print" >>> '
+        f'Введите любое число. Для прекращения ввода введите "stop". Печать списка "print" >>> '
     )
     if user_input == 'stop':
         break
