@@ -17,13 +17,13 @@ def my_div(nominator, denominator):
         return nominator / denominator
 
 
-def str_float(string):
+def str_float(string: str):
     """
     :param string:
     :return: float или None
     """
     try:
-        return float(string)
+        return float(string.replace(',', '.'))
     except ValueError:
         return
 
